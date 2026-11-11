@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OpenDoge · 装配指南</title>
+<link rel="stylesheet" href="./style.css?v=5">
+<script>
+  window.addEventListener('error', (e) => {
+    const el = document.getElementById('status');
+    if (el) el.textContent = '脚本错误：' + (e.message || e.filename || '未知');
+  });
+</script>
+<script type="importmap">
+{
+  "imports": {
+    "three": "./vendor/three/three.module.js",
+    "three/addons/": "./vendor/three/addons/"
+  }
+}
+</script>
+</head>
+<body>
+<div id="app">
+  <aside>
+    <header>
+      <div class="headline">
+        <h1>OpenDoge 装配指南</h1>
+        <span id="modelVersion" class="version" hidden></span>
+      </div>
+      <div class="tabs">
+        <button id="tab-steps" class="on">装配步骤</button>
+        <button id="tab-modules">模块预览</button>
+      </div>
+    </header>
+
+    <section id="stepPanel">
+      <div class="gnav">
+        <button id="first" title="第一步">⏮</button>
+        <button id="prev">◀ 上一步</button>
+        <span id="count"></span>
+        <button id="next">下一步 ▶</button>
+        <button id="last" title="最后一步">⏭</button>
+      </div>
+      <input id="slider" type="range" min="1" value="1" step="1">
+      <p id="phase" class="phase"></p>
+      <h2 id="title"></h2>
+      <p id="text" class="hint"></p>
+      <div class="playrow">
+        <button id="play">▶ 播放</button>
+        <span id="progressText" class="hint"></span>
+      </div>
+      <h3>本步零件 <span id="partCount" class="hint"></span></h3>
+      <ul id="parts"></ul>
+    </section>
+
+    <section id="modulePanel" hidden>
+      <section id="stats"></section>
+      <div class="controls">
+        <label>爆炸 <input id="explode" type="range" min="0" max="1" step="0.01" value="0"></label>
+        <label class="check"><input id="colorByModule" type="checkbox" checked> 按模块着色</label>
+        <button id="reset">重置视角</button>
+      </div>
+      <h2>零件检索</h2>
+      <input id="search" type="search" placeholder="名称 / 编号 / 尺寸，如 紧固件、P012" autocomplete="off">
+      <div id="results" class="results" hidden></div>
+
+      <h2>子装配 <span id="moduleCount"></span></h2>
+      <div id="rows"></div>
+      <footer class="hint">367 个零件、13 个子装配，点击模块可定位与隐藏。</footer>
+    </section>
+  </aside>
+
+  <div id="view">
+    <div id="status">加载中…</div>
+    <div id="tooltip" hidden></div>
+  </div>
+</div>
+<script type="module" src="./app.js?v=9"></script>
+</body>
+</html>

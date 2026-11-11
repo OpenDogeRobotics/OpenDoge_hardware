@@ -1,1 +1,6 @@
 .DS_Store
+.vscode/
+.screenshots/
+.trae-html-share-packages/
+__pycache__/
+*.pyc
